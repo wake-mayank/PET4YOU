@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Hostels</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url(/2.jpeg); /* Replace with your background image */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        header {
+            background-color: rgba(109, 72, 2, 0.8);
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+        }
+
+        .hostel-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s;
+            width: 250px; /* Set a fixed width */
+            height: 300px; /* Set a fixed height */
+            margin: 0 auto; /* Center the card */
+        }
+
+        .hostel-card:hover {
+            transform: scale(1.05);
+        }
+
+        .hostel-image img {
+            width: 100%;
+            height: 150px; /* Adjust height for smaller cards */
+            object-fit: cover;
+        }
+
+        .hostel-details {
+            padding: 10px; /* Reduce padding */
+        }
+
+        .hostel-details h2 {
+            margin: 5px 0; /* Reduce margin */
+            color: #333;
+            font-size: 1.2em; /* Adjust font size */
+        }
+
+        .services {
+            font-size: 0.8em; /* Adjust font size */
+            color: #666;
+            margin-bottom: 5px; /* Reduce margin */
+        }
+
+        .rating {
+            font-size: 1em; /* Adjust font size */
+            color: #ff6600;
+            margin-bottom: 5px; /* Reduce margin */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Best Dog Hostels</h1>
+    </header>
+
+    <div class="container">
+        <div class="hostel-card">
+            <div class="hostel-image">
+                <img src="/8-month-old-golden-retriever-260nw-2312248819.webp" alt="Dog Hostel 1" />
+            </div>
+            <div class="hostel-details">
+                <h2>Doggy Paradise Hostel</h2>
+                <div class="services">Services: 24/7 Supervision, Grooming, Playtime</div>
+                <div class="rating">★★★★★</div>
+            </div>
+        </div>
+
+        <div class="hostel-card">
+            <div class="hostel-image">
+                <img src="/images.jpeg" alt="Dog Hostel 2" />
+            </div>
+            <div class="hostel-details">
+                <h2>Paw Haven Retreat</h2>
+                <div class="services">Services: Daily Walks, Healthy Meals, Training</div>
+                <div class="rating">★★★★☆</div>
+            </div>
+        </div>
+
+        <div class="hostel-card">
+            <div class="hostel-image">
+                <img src="/images (1).jpeg" alt="Dog Hostel 3" />
+            </div>
+            <div class="hostel-details">
+                <h2>Furry Friends Lodge</h2>
+                <div class="services">Services: Socialization, Grooming, 24/7 Care</div>
+                <div class="rating">★★★★★</div>
+            </div>
+        </div>
+
+        <div class="hostel-card">
+            <div class="hostel-image">
+                <img src="/1.jpg" alt="Dog Hostel 4" />
+            </div>
+            <div class="hostel-details">
+                <h2>Canine Comfort Inn</h2>
+                <div class="services">Services: Playtime, Daily Walks, Supervision</div>
+                <div class="rating">★★★★☆</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Best Dog Hostels</p>
+    </footer>
+</body>
+</html>

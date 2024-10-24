@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Your Dog</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #f5f5f5;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Video background */
+        .video-container {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1; /* Behind other content */
+        }
+
+        #bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 56.25vw; /* (16:9 aspect ratio) */
+            min-height: 100vh;
+            min-width: 177.77vh; /* (16:9 aspect ratio) */
+            transform: translate(-50%, -50%);
+            pointer-events: none; /* Prevents interaction with the video */
+        }
+
+        /* Container style */
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40%;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.6); /* Slightly transparent background */
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            color: #333;
+            z-index: 1; /* In front of the video */
+             max-height: 80vh; /* Set maximum height */
+        overflow-y: auto; 
+        }
+
+        h1 {
+            text-align: center;
+            color: #6b4f30;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        h1:hover {
+            color: #333;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            text-align: center;
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #6b4f30;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #6b4f30;
+            border-radius: 6px;
+            background-color: #fafafa;
+            box-sizing: border-box;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:hover,
+        input[type="email"]:hover,
+        input[type="tel"]:hover,
+        textarea:hover,
+        select:hover {
+            border-color: #333;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #6b4f30;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            background-color: #333;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Transparent background */
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            color: #6b4f30;
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        .modal-content p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .close-btn {
+            background-color: #6b4f30;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .close-btn:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background video -->
+    <div class="video-container">
+        <video id="bg-video" autoplay muted loop>
+            <source src="/puppyvideo.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="container">
+        <h1>Donate Your Dog</h1>
+        <p>If you're considering donating your dog, please fill out the form below. Our team will reach out to assist you.</p>
+
+        <form id="donationForm">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email (required):</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <div id="emailError" class="error">Valid email is required</div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number (required):</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                <div id="phoneError" class="error">Phone number is required</div>
+            </div>
+
+            <div class="form-group">
+                <label for="reason">Reason for Donation (required):</label>
+                <select id="reason" name="reason" required>
+                    <option value="">Select a reason</option>
+                    <option value="Moving">Moving to a new location</option>
+                    <option value="Allergy">Family member allergic to dogs</option>
+                    <option value="Time">Lack of time to care for the dog</option>
+                    <option value="Financial">Financial constraints</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dogName">Dog's Name (optional):</label>
+                <input type="text" id="dogName" name="dogName" placeholder="Enter your dog's name">
+            </div>
+
+            <div class="form-group">
+                <label for="dogInfo">Tell us about your dog (age, breed, temperament):</label>
+                <textarea id="dogInfo" name="dogInfo" rows="4" placeholder="Provide some information about your dog" required></textarea>
+                <div id="dogInfoError" class="error">Information about the dog is required</div>
+            </div>
+
+            <button type="submit">Submit Donation</button>
+
+            <div id="successMessage" class="success-message">Thank you! Your donation request has been submitted successfully!</div>
+        </form>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="thankYouModal" class="modal">
+        <div class="modal-content">
+            <h2>Thank You!</h2>
+            <p>Your request has been successfully submitted.</p>
+            <p>We will get in touch with you soon. For any issues, feel free to email us at <strong>pet4you@gmail.com</strong>.</p>
+            <button class="close-btn">Close</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('donationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Clear previous error messages
+            document.getElementById('emailError').style.display = 'none';
+            document.getElementById('phoneError').style.display = 'none';
+            document.getElementById('dogInfoError').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+
+            // Form validation
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const dogInfo = document.getElementById('dogInfo').value;
+            let valid = true;
+
+            // Validate email
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!email || !emailPattern.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                valid = false;
+            }
+
+            // Validate phone
+            const phonePattern = /^[0-9]{10}$/;
+            if (!phone || !phonePattern.test(phone)) {
+                document.getElementById('phoneError').style.display = 'block';
+                valid = false;
+            }
+
+            // Validate dog information
+            if (!dogInfo) {
+                document.getElementById('dogInfoError').style.display = 'block';
+                valid = false;
+            }
+
+            // Show modal if form is valid
+            if (valid) {
+                const modal = document.getElementById('thankYouModal');
+                modal.style.display = 'block';
+                document.getElementById('donationForm').reset(); // Reset form fields
+            }
+        });
+
+        // Close modal when the close button is clicked
+        document.querySelector('.close-btn').addEventListener('click', function() {
+            const modal = document.getElementById('thankYouModal');
+            modal.style.display = 'none';
+        });
+
+        // Close modal when user clicks outside of the modal content
+        window.onclick = function(event) {
+            const modal = document.getElementById('thankYouModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+
+</body>
+
+</html>
